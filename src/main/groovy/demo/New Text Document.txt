@@ -1,0 +1,15 @@
+
+JFrame parentFrame = new JFrame()
+parentFrame.setVisible(true)
+
+final JDialog dialog = new JDialog(parentFrame, true); // modal
+dialog.setUndecorated(true);
+JProgressBar bar = new JProgressBar();
+bar.setIndeterminate(true);
+bar.setStringPainted(true);
+bar.setString("Please wait");
+dialog.add(bar);
+dialog.pack();
+
+
+"simpleMessagePleaseWait.groovy"
