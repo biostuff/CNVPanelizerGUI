@@ -1,5 +1,13 @@
 apply plugin: 'groovy'
+apply plugin: 'application'
 version = 1.0
+
+mainClassName = "demo.MyGUI"
+
+// To allow debugging in NetBeans...
+if (!hasProperty('mainClass')) {
+    ext.mainClass = mainClassName
+}
 
 repositories {
     mavenCentral()
@@ -15,16 +23,11 @@ jar {
     baseName = "CNVPanelizerGUI"
     version = "0.0.1"
     manifest.mainAttributes(
-        "Main-Class" : "demo.MyGUI",
+        "Main-Class" : mainClassName,
         'Build-day': new Date(),
         'Build-date': new Date(),
         'SplashScreen-Image': "splash-screen.jpg")
     from {
 	configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-
     }
-}
-
-task run(dependsOn:jar) << {
-    javaexec { main="-jar"; args jar.archivePath } 
 }
